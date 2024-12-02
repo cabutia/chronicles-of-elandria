@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjvbroogi0bow"]
+
+[ext_resource type="Script" path="res://Scenes/GameManager.gd" id="1_inkyl"]
+[ext_resource type="Script" path="res://Scenes/MainCamera.gd" id="2_tg0x4"]
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_inkyl")
+
+[node name="MainCamera" type="Camera2D" parent="."]
+zoom = Vector2(0.75, 0.75)
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+script = ExtResource("2_tg0x4")
+
+[node name="WorldPlaceholder" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="PlayerPlaceholder" type="Node2D" parent="."]
+y_sort_enabled = true

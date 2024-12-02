@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpn7e8dxmm23k"]
+
+[ext_resource type="Script" path="res://Entities/NPC/SampleNPC.gd" id="1_5jo0r"]
+[ext_resource type="Texture2D" uid="uid://dwavr5oox0dko" path="res://Assets/Dist/DudeMonster/Dude_Monster_Idle_4.png" id="1_xc611"]
+
+[sub_resource type="Animation" id="Animation_8b7tt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_nw647"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n5w0l"]
+_data = {
+"RESET": SubResource("Animation_8b7tt"),
+"idle": SubResource("Animation_nw647")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_42r1h"]
+radius = 5.00003
+height = 18.6667
+
+[node name="SampleNPC" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_5jo0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_xc611")
+offset = Vector2(0, -16)
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_n5w0l")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_42r1h")
