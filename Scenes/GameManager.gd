@@ -12,12 +12,17 @@ extends Node2D
 
 var is_lumia: bool = false;
 
-
 func initialize_world():
 	world_manager.load_map(state.world);
 
 func initialize_camera():
 	main_camera.set_player(player_placeholder)
+	world_manager.connect('change_ready', update_camera_bounds)
+	
+func update_camera_bounds(_name):
+	var world = world_manager.get_current_world();
+	# var tilemap = world.find_node("World/TileMap")
+	# print("tilemap", tilemap)
 
 func initialize_player():
 	var player = player_scene.instantiate() as Player;
@@ -32,7 +37,7 @@ func _ready():
 	initialize_camera()
 	
 func _process(delta):
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept") and !world_manager.is_traveling():
 		if (is_lumia):
 			world_manager.change('vyrka')
 			is_lumia = false

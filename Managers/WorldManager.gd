@@ -27,10 +27,12 @@ signal change_ready;
 @onready var fader: CanvasModulate = get_tree().get_root().get_node("Game/WorldFader")
 @onready var animation_player: AnimationPlayer = fader.get_node("AnimationPlayer")
 
+var traveling = false;
 var target_world: String;
 
 func change(name: String):
 	target_world = name
+	traveling = true
 	change_started.emit();
 	animation_player.connect('animation_finished', on_fade_finish)
 	animation_player.play('fade_in')
@@ -43,7 +45,11 @@ func on_fade_finish(name: String):
 	elif name == 'fade_out':
 		change_finished.emit()
 		target_world = ''
+		traveling = false
 		
+
+func is_traveling():
+	return traveling
 
 # Called when the node enters the scene tree for the first time.
 func load_map(name: String):
@@ -56,6 +62,9 @@ func load_map(name: String):
 	var instance = world.instantiate();
 	current_world = instance;
 	target.add_child(current_world)
+	
+func get_current_world():
+	return current_world;
 
 func get_target_world():
 	return target_world;

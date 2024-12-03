@@ -1,8 +1,9 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://b4gb6tc2d5u38"]
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://b4gb6tc2d5u38"]
 
 [ext_resource type="Texture2D" uid="uid://v0uic2jtoxju" path="res://Assets/Dist/World/tileset_01.png" id="1_x4ylf"]
 [ext_resource type="Texture2D" uid="uid://ckwn5us2fb5wo" path="res://Assets/Dist/World/tree.png" id="2_8ctyf"]
 [ext_resource type="Texture2D" uid="uid://dlp1e4atm5s84" path="res://Assets/Dist/World/bush.png" id="3_4vy4i"]
+[ext_resource type="Texture2D" uid="uid://4y1pmhg7fdrw" path="res://Assets/Dist/World/sprite_test.png" id="3_ewqg7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sojah"]
 texture = ExtResource("1_x4ylf")
@@ -305,6 +306,15 @@ texture_region_size = Vector2i(120, 120)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-29.5, 53, -60, 35, -44, 3, 40, 3, 60, 35, 31.5, 51.5)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kmgf8"]
+texture = ExtResource("3_ewqg7")
+margins = Vector2i(0, 9)
+texture_region_size = Vector2i(96, 112)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 23)
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vwftt"]
 texture = ExtResource("3_4vy4i")
 texture_region_size = Vector2i(140, 140)
@@ -316,8 +326,9 @@ texture_region_size = Vector2i(140, 140)
 
 [resource]
 tile_shape = 3
-tile_size = Vector2i(120, 140)
+tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_sojah")
 sources/2 = SubResource("TileSetAtlasSource_lrgpd")
 sources/4 = SubResource("TileSetAtlasSource_vwftt")
+sources/3 = SubResource("TileSetAtlasSource_kmgf8")
