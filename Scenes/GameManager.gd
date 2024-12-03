@@ -34,9 +34,9 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		if (is_lumia):
-			world_manager.load_map('vyrka')
+			world_manager.change('vyrka')
 			is_lumia = false
 		else:
-			world_manager.load_map('lumia')
+			world_manager.change('lumia')
 			is_lumia = true
 		
