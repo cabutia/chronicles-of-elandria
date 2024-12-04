@@ -5,8 +5,9 @@ extends Label
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	visible = false
-	world_manager.connect("change_started", on_change_started)
-	world_manager.connect("change_ready", on_change_ready)
+	if world_manager:
+		world_manager.connect("change_started", on_change_started)
+		world_manager.connect("change_ready", on_change_ready)
 
 func on_change_started():
 	visible = true

@@ -308,12 +308,15 @@ texture_region_size = Vector2i(120, 120)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kmgf8"]
 texture = ExtResource("3_ewqg7")
-margins = Vector2i(0, 9)
-texture_region_size = Vector2i(96, 112)
+0:0/size_in_atlas = Vector2i(6, 8)
 0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, 23)
+0:0/0/texture_origin = Vector2i(0, 32)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
+11:3/size_in_atlas = Vector2i(4, 3)
+11:3/0 = 0
+11:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+11:3/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vwftt"]
 texture = ExtResource("3_4vy4i")
@@ -326,7 +329,7 @@ texture_region_size = Vector2i(140, 140)
 
 [resource]
 tile_shape = 3
-tile_size = Vector2i(64, 64)
+tile_size = Vector2i(64, 48)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_sojah")
 sources/2 = SubResource("TileSetAtlasSource_lrgpd")

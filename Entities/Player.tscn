@@ -17,8 +17,11 @@ shape = SubResource("CapsuleShape2D_d2bxn")
 
 [node name="CharacterPlaceholder" type="Node2D" parent="."]
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Crosshair" type="Node2D" parent="."]
+position = Vector2(0, -32)
 
-[node name="ColorRect" type="ColorRect" parent="Node2D"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="CrosshairIndicator" type="ColorRect" parent="Crosshair"]
+offset_left = 46.0
+offset_top = -3.0
+offset_right = 79.0
+offset_bottom = 4.0
