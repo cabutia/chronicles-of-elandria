@@ -1,0 +1,88 @@
+[gd_scene load_steps=9 format=3 uid="uid://dki104motnscv"]
+
+[ext_resource type="Script" path="res://UI/GameUI/HealthContainer.gd" id="1_mx82t"]
+[ext_resource type="Script" path="res://UI/GameUI/ManaContainer.gd" id="2_mfmok"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sm8oy"]
+bg_color = Color(0.223529, 0, 0.0431373, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xk0v1"]
+bg_color = Color(0.647059, 0.0235294, 0.239216, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_7sena"]
+font_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nst0j"]
+bg_color = Color(0.0156863, 0.105882, 0.192157, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icjvs"]
+bg_color = Color(0, 0.431373, 0.760784, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_ny3hi"]
+font_size = 12
+
+[node name="MainGameUI" type="CanvasLayer"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HealthBar" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("1_mx82t")
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/HealthBar"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_sm8oy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xk0v1")
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HealthBar"]
+layout_mode = 2
+text = "100/100
+"
+label_settings = SubResource("LabelSettings_7sena")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ManaBar" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_mfmok")
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/ManaBar"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_nst0j")
+theme_override_styles/fill = SubResource("StyleBoxFlat_icjvs")
+value = 75.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ManaBar"]
+layout_mode = 2
+text = "100/100
+"
+label_settings = SubResource("LabelSettings_ny3hi")

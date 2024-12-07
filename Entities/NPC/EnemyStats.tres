@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EntityStats" load_steps=2 format=3 uid="uid://b51tbvj567xmm"]
+
+[ext_resource type="Script" path="res://Resources/EntityStats.gd" id="1_hqyd8"]
+
+[resource]
+script = ExtResource("1_hqyd8")
+health = 100
+max_health = 100
+use_mana = false
+mana = 100
+max_mana = 100

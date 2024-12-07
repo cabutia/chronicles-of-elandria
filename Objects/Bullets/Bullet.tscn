@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8ipwb2hvot2p"]
+
+[ext_resource type="Script" path="res://Objects/Bullets/Bullet.gd" id="1_plfyf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_en8dq"]
+radius = 13.0
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_plfyf")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -5.0
+offset_top = -3.0
+offset_right = 5.0
+offset_bottom = 3.0
+color = Color(1, 1, 0.384314, 1)
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_en8dq")
+
+[node name="DieTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true

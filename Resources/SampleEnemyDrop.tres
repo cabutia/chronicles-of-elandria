@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EntityDrop" load_steps=5 format=3 uid="uid://ct4egelp5cvb6"]
+
+[ext_resource type="Resource" uid="uid://b8231hy7mofa0" path="res://Resources/Items/GoldCoin.tres" id="1_6u5kl"]
+[ext_resource type="Script" path="res://Resources/EntityDrop.gd" id="1_drwjm"]
+[ext_resource type="Script" path="res://Resources/DropListItem.gd" id="2_rynky"]
+
+[sub_resource type="Resource" id="Resource_xwurk"]
+script = ExtResource("2_rynky")
+min_amount = 50
+max_amount = 150
+chance = 50
+item = ExtResource("1_6u5kl")
+
+[resource]
+script = ExtResource("1_drwjm")
+list = Array[ExtResource("2_rynky")]([SubResource("Resource_xwurk")])

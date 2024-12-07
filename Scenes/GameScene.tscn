@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cjvbroogi0bow"]
+[gd_scene load_steps=10 format=3 uid="uid://cjvbroogi0bow"]
 
 [ext_resource type="Script" path="res://Scenes/GameManager.gd" id="1_inkyl"]
 [ext_resource type="Script" path="res://Scenes/MainCamera.gd" id="2_tg0x4"]
 [ext_resource type="Script" path="res://Scenes/WorldFaderLabel.gd" id="3_uebqu"]
+[ext_resource type="PackedScene" uid="uid://dki104motnscv" path="res://UI/GameUI/MainGameUI.tscn" id="4_ghmfw"]
 
 [sub_resource type="Animation" id="Animation_6np5f"]
 length = 0.001
@@ -67,6 +68,8 @@ shadow_offset = Vector2(0, 5)
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_inkyl")
+
+[node name="MainGameUI" parent="." instance=ExtResource("4_ghmfw")]
 
 [node name="MainCamera" type="Camera2D" parent="."]
 zoom = Vector2(0.75, 0.75)

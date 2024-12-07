@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EntityStats" load_steps=2 format=3 uid="uid://cki02xmarpuan"]
+
+[ext_resource type="Script" path="res://Resources/EntityStats.gd" id="1_t12g4"]
+
+[resource]
+script = ExtResource("1_t12g4")
+health = 4500
+max_health = 4500
+use_mana = true
+mana = 400
+max_mana = 400
+p_atk = 78
+p_def = 0
+m_atk = 0
+m_def = 0

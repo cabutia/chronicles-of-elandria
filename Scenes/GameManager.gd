@@ -43,5 +43,4 @@ func _process(delta):
 			is_lumia = false
 		else:
 			world_manager.change('lumia')
-			is_lumia = true
-		
+			is_lumia = true		

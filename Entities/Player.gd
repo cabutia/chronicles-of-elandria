@@ -1,26 +1,28 @@
 class_name Player extends CharacterBody2D
 
+var bullet_scene = preload("res://Objects/Bullets/Bullet.tscn");
+var PlayerStats = preload("res://Entities/PlayerStats.tres")
+
 @onready var entity_map = $"/root/EntityMap";
 @onready var world_manager = $"/root/WorldManager";
 
 @onready var character_socket: Node2D = $CharacterPlaceholder;
 @onready var label = $Label
-@onready var crosshair: Node2D = $Crosshair;
-@onready var attacking_timeout
+@onready var crosshair: Node2D = $PlayerCrosshair;
 
 var timer: Timer;
 
 var character: BaseCharacter;
 var speed = 500
 var can_move = true;
-var crosshair_hide_delay = 500;
+var can_shoot = true;
+var stats: EntityStats = PlayerStats.duplicate();
 
 func set_character(type: String):
 	var character_scene = entity_map.get_entity(type)
 	if !character_scene:
 		return
 	character = character_scene.instantiate() as BaseCharacter
-	# character.global_position = global_position
 	for child in character_socket.get_children():
 		child.queue_free()
 	character_socket.add_child(character)
@@ -37,9 +39,24 @@ func on_world_change_finished():
 	print("change finished")
 	can_move = true	
 
+func on_bullet_hit(body):
+	if body.is_in_group("enemies"):
+		if body.has_method("take_damage"):
+			var died = body.take_damage(stats.p_atk)
+			if died:
+				stats.add_health(10)
+
 func on_shoot():
-	crosshair.visible = true;
-	timer.start()
+	if !can_shoot:
+		return
+	can_shoot = false;
+	crosshair.display()
+	var bullet: Area2D = bullet_scene.instantiate();
+	bullet.position = crosshair.get_spawn_point()
+	get_tree().get_root().add_child(bullet);
+	bullet.set_target(get_global_mouse_position());
+	bullet.connect('body_entered', on_bullet_hit)
+	can_shoot = true;
 
 func look_left():
 	character.get_sprite().flip_h = true
@@ -53,22 +70,9 @@ func setup_world_manager_signals():
 		world_manager.connect('change_finished', on_world_change_finished)
 		world_manager.connect('change_ready', on_world_change_ready)
 		
-func on_crosshair_timer_timeout():
-	print("on_crosshair_timer_timeout")
-	crosshair.visible = false;
-		
-func setup_crosshair():
-	crosshair.visible = false;
-	timer = Timer.new()
-	timer.one_shot = true
-	timer.wait_time = 1.5
-	timer.connect('timeout', on_crosshair_timer_timeout)
-	add_child(timer)
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	setup_world_manager_signals()
-	setup_crosshair()
 	set_character("human")
 
 func _unhandled_input(event):
@@ -93,7 +97,7 @@ func _physics_process(delta):
 		
 	var direction = Input.get_vector("player_left", "player_right", "player_up", "player_down")
 	
-	crosshair.look_at(get_global_mouse_position())
+	
 	
 	velocity = direction * speed
 	
