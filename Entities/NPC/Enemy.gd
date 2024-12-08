@@ -9,6 +9,8 @@ var EnemyDrop = preload("res://Resources/SampleEnemyDrop.tres");
 
 @export var speed = 100;
 
+signal die;
+
 var stats: EntityStats = EnemyStats.duplicate()
 var drop: EntityDrop = EnemyDrop.duplicate()
 var direction: Vector2;
@@ -30,6 +32,7 @@ func take_damage(attack_amount: int) -> bool:
 	stats.sub_health(attack_amount)
 	if stats.health == 0:
 		alive = false
+		die.emit(self)
 		entity_manager.on_entity_killed(self)
 		queue_free()
 		return true
