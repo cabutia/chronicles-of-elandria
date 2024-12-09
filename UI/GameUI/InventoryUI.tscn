@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv674nsfpvfqe"]
+
+[ext_resource type="Script" path="res://UI/GameUI/InventoryUI.gd" id="1_d73cu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cj3hv"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="InventoryUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_d73cu")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 386.0
+offset_bottom = 326.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cj3hv")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 10
+
+[node name="VFlowContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VFlowContainer"]
+layout_mode = 2
+text = "Inventory
+"
+
+[node name="GridContainer" type="GridContainer" parent="Panel/MarginContainer/VFlowContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 13
+theme_override_constants/v_separation = 20
+columns = 6

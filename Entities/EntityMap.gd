@@ -6,4 +6,5 @@ var char_map: Dictionary = {
 }
 
 func get_entity(name: String) -> PackedScene:
+	print("Getting entity ", name)
 	return char_map[name];

@@ -1,10 +1,11 @@
 class_name MainCamera extends Camera2D
 
 var player: Node2D
+var player_node: Player;
 
 
 func set_player(_player: Node2D):
-	player = _player.get_node("Player")
+	player = _player
 
 
 # Called when the node enters the scene tree for the first time.

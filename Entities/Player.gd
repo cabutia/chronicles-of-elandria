@@ -5,6 +5,7 @@ var PlayerStats = preload("res://Entities/PlayerStats.tres")
 
 @onready var entity_map = $"/root/EntityMap";
 @onready var world_manager = $"/root/WorldManager";
+@onready var inventory_manager = $"/root/InventoryManager";
 
 @onready var character_socket: Node2D = $CharacterPlaceholder;
 @onready var label = $Label
@@ -17,6 +18,7 @@ var speed = 500
 var can_move = true;
 var can_shoot = true;
 var stats: EntityStats = PlayerStats.duplicate();
+var type: String
 
 func set_character(type: String):
 	var character_scene = entity_map.get_entity(type)
@@ -26,6 +28,9 @@ func set_character(type: String):
 	for child in character_socket.get_children():
 		child.queue_free()
 	character_socket.add_child(character)
+	
+func set_type(_type: String):
+	type = _type
 
 func on_world_change_ready(spawn_point: Vector2):
 	print('"change ready')
@@ -70,10 +75,13 @@ func setup_world_manager_signals():
 		world_manager.connect('change_finished', on_world_change_finished)
 		world_manager.connect('change_ready', on_world_change_ready)
 		
+func on_pickup(item: DroppedItem):
+	inventory_manager.on_pickup_item(item);
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	setup_world_manager_signals()
-	set_character("human")
+	set_character(type)
 
 func _unhandled_input(event):
 	if !can_move:
@@ -96,8 +104,6 @@ func _physics_process(delta):
 		return
 		
 	var direction = Input.get_vector("player_left", "player_right", "player_up", "player_down")
-	
-	
 	
 	velocity = direction * speed
 	

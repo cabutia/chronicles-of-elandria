@@ -5,6 +5,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_qndp5"]
 
 [node name="SpawnPoint" type="Area2D"]
+y_sort_enabled = true
 script = ExtResource("1_v2x18")
 
 [node name="SpawnArea" type="CollisionShape2D" parent="."]

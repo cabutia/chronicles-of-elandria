@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://t3gu5jcrcdmi"]
+
+[ext_resource type="Script" path="res://UI/GameUI/NotificationsUI.gd" id="1_wtkki"]
+
+[node name="NotificationsUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_wtkki")
+
+[node name="MessageContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -97.0
+offset_top = -40.0
+offset_right = 97.0
+grow_horizontal = 2
+grow_vertical = 0

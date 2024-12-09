@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dki104motnscv"]
+[gd_scene load_steps=11 format=3 uid="uid://dki104motnscv"]
 
 [ext_resource type="Script" path="res://UI/GameUI/HealthContainer.gd" id="1_mx82t"]
 [ext_resource type="Script" path="res://UI/GameUI/ManaContainer.gd" id="2_mfmok"]
+[ext_resource type="PackedScene" uid="uid://bv674nsfpvfqe" path="res://UI/GameUI/InventoryUI.tscn" id="3_bx5gu"]
+[ext_resource type="PackedScene" uid="uid://t3gu5jcrcdmi" path="res://UI/GameUI/NotificationsUI.tscn" id="4_ajm81"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sm8oy"]
 bg_color = Color(0.223529, 0, 0.0431373, 1)
@@ -86,3 +88,20 @@ layout_mode = 2
 text = "100/100
 "
 label_settings = SubResource("LabelSettings_ny3hi")
+
+[node name="InventoryUI" parent="." instance=ExtResource("3_bx5gu")]
+offset_top = 320.0
+offset_right = 40.0
+offset_bottom = 320.0
+grow_vertical = 2
+size_flags_vertical = 0
+
+[node name="NotificationsUI" parent="." instance=ExtResource("4_ajm81")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true

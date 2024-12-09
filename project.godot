@@ -18,10 +18,12 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+EntityMap="*res://Entities/EntityMap.gd"
 WorldManager="*res://Managers/WorldManager.gd"
 SaveManager="*res://Managers/SaveManager.gd"
-EntityMap="*res://Entities/EntityMap.gd"
 EntityManager="*res://Managers/EntityManager.gd"
+GameManager="*res://Managers/GameManager.gd"
+InventoryManager="*res://Managers/InventoryManager.gd"
 
 [input]
 

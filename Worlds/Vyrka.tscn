@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://covubkg7v1rg"]
+[gd_scene load_steps=5 format=3 uid="uid://covubkg7v1rg"]
 
 [ext_resource type="TileSet" uid="uid://b4gb6tc2d5u38" path="res://Worlds/WorldsTileset.tres" id="1_qr6uk"]
 [ext_resource type="PackedScene" uid="uid://bpn7e8dxmm23k" path="res://Entities/NPC/SampleNPC.tscn" id="2_t1ixl"]
 [ext_resource type="PackedScene" uid="uid://bdvagvmnxwybu" path="res://Entities/NPC/Enemy.tscn" id="3_toosg"]
-[ext_resource type="PackedScene" uid="uid://k7m1d6xcliml" path="res://Objects/DroppedItem.tscn" id="4_28laa"]
 [ext_resource type="PackedScene" uid="uid://dervnpg2itva0" path="res://Objects/SpawnPoint.tscn" id="5_mlmn1"]
 
 [node name="Vyrka" type="Node2D"]
@@ -35,25 +34,9 @@ position = Vector2(454, -435)
 [node name="SampleNPC3" parent="." instance=ExtResource("2_t1ixl")]
 position = Vector2(1567, -353)
 
-[node name="Enemy" parent="." instance=ExtResource("3_toosg")]
-position = Vector2(484, -233)
-
-[node name="Enemy2" parent="." instance=ExtResource("3_toosg")]
-position = Vector2(748, 1.99998)
-
-[node name="Enemy3" parent="." instance=ExtResource("3_toosg")]
-position = Vector2(449, 356)
-
-[node name="DroppedItem" parent="." instance=ExtResource("4_28laa")]
-
 [node name="SpawnPoint" parent="." instance=ExtResource("5_mlmn1")]
 position = Vector2(-49, -337)
 Entity = ExtResource("3_toosg")
+range = 500
 spawn_interval = 1
-max_entities = 10
-
-[node name="SpawnPoint2" parent="." instance=ExtResource("5_mlmn1")]
-position = Vector2(233, 227)
-Entity = ExtResource("3_toosg")
-spawn_interval = 1
-max_entities = 10
+max_entities = 20

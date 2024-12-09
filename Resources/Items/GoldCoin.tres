@@ -1,8 +1,66 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://b8231hy7mofa0"]
+[gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://b8231hy7mofa0"]
 
 [ext_resource type="Script" path="res://Resources/Item.gd" id="1_3s8vr"]
+[ext_resource type="Texture2D" uid="uid://cpaytg6g2goyn" path="res://Assets/Dist/Items/MonedaD.png" id="1_nl2p3"]
+[ext_resource type="Texture2D" uid="uid://cwe7tytk6rdb8" path="res://Assets/Dist/Items/MonedaD-inventory.png" id="2_cjcie"]
+
+[sub_resource type="Animation" id="Animation_ityqb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_fd2e3"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ujnk8"]
+_data = {
+"RESET": SubResource("Animation_ityqb"),
+"idle": SubResource("Animation_fd2e3")
+}
+
+[sub_resource type="PackedScene" id="PackedScene_1xt1c"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("GoldCoinDropped", "Node2D", "Sprite2D", "texture_filter", "scale", "texture", "hframes", "AnimationPlayer", "autoplay", "libraries"),
+"node_count": 3,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 0, 0, 0, 0, 2, 2, -1, 4, 3, 0, 4, 1, 5, 2, 6, 3, 0, 0, 0, 7, 7, -1, 2, 8, 4, 9, 5, 0),
+"variants": [1, Vector2(3, 3), ExtResource("1_nl2p3"), 5, "idle", {
+"": SubResource("AnimationLibrary_ujnk8")
+}],
+"version": 3
+}
 
 [resource]
 script = ExtResource("1_3s8vr")
 name = "Gold Coin"
 weight = 10
+stackable = true
+dropped_sprite = SubResource("PackedScene_1xt1c")
+inventory_texture = ExtResource("2_cjcie")
