@@ -2,7 +2,7 @@ extends Node2D
 
 @export var Entity: PackedScene;
 @export var range = 1000
-@export var spawn_interval = 2
+@export var spawn_interval = 2.0
 @export var max_entities = 3
 
 @onready var spawn_area = $SpawnArea;

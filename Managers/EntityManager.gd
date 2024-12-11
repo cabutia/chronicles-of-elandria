@@ -16,7 +16,7 @@ func handle_entity_drop(entity: BaseNPC):
 			if !should_drop(drop_list_item):
 				return
 			var item = DroppedItemScn.instantiate();
-			var dropped_item = DroppedItem.from_list_item(drop_list_item)
+			var dropped_item = DroppedItemResource.from_list_item(drop_list_item)
 			item.set_item(dropped_item)
 			var item_position = entity.global_position;
 			item_position.y = item_position.y + (i * 100)

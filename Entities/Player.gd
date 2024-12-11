@@ -15,6 +15,7 @@ var timer: Timer;
 
 var character: BaseCharacter;
 var speed = 500
+var fire_rate = 0.1;
 var can_move = true;
 var can_shoot = true;
 var stats: EntityStats = PlayerStats.duplicate();
@@ -59,8 +60,11 @@ func on_shoot():
 	var bullet: Area2D = bullet_scene.instantiate();
 	bullet.position = crosshair.get_spawn_point()
 	get_tree().get_root().add_child(bullet);
-	bullet.set_target(get_global_mouse_position());
+	var crosshair_rotation = crosshair.rotation
+	bullet.set_angle(crosshair_rotation);
 	bullet.connect('body_entered', on_bullet_hit)
+	
+	await get_tree().create_timer(fire_rate).timeout
 	can_shoot = true;
 
 func look_left():
@@ -76,7 +80,10 @@ func setup_world_manager_signals():
 		world_manager.connect('change_ready', on_world_change_ready)
 		
 func on_pickup(item: DroppedItem):
-	inventory_manager.on_pickup_item(item);
+	if inventory_manager.can_pickup(item.item):
+		inventory_manager.on_pickup_item(item.item);
+		item.queue_free()
+		
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -86,9 +93,6 @@ func _ready():
 func _unhandled_input(event):
 	if !can_move:
 		return
-		
-	if Input.is_action_just_pressed("player_shoot"):
-		on_shoot()
 		
 	if Input.is_action_just_pressed("player_left"):
 		look_left()
@@ -100,6 +104,9 @@ func _process(delta):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	if Input.is_action_pressed("player_shoot"):
+		on_shoot()
+		
 	if !can_move:
 		return
 		

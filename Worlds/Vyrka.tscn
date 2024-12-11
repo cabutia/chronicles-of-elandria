@@ -38,5 +38,5 @@ position = Vector2(1567, -353)
 position = Vector2(-49, -337)
 Entity = ExtResource("3_toosg")
 range = 500
-spawn_interval = 1
-max_entities = 20
+spawn_interval = 0.5
+max_entities = 50

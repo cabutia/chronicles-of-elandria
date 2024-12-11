@@ -43,11 +43,11 @@ func initialize_player():
 	
 func initialize_inventory():
 	var items: Array[Dictionary] = [
-		{
-			"slot": 0,
-			"name": "gold_coin",
-			"amount": 423
-		}
+#		{
+#			"slot": 0,
+#			"id": "gold_coin",
+#			"amount": 423
+#		}
 	];
 	inventory_manager.initialize()
 	inventory_manager.load(items)

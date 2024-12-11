@@ -15,7 +15,19 @@ func set_inventory_item(_inventory_item: InventoryItemResource):
 func update_amount(amount: int):
 	inventory_item.amount = amount;
 	amount_label.text = str("x", amount)
+	
+func is_empty() -> bool:
+	return !inventory_item
+	
+func on_mouse_enter():
+	name_label.visible = true;
+	
+func on_mouse_leave():
+	name_label.visible = false
 
 func _ready():
+	connect("mouse_entered", on_mouse_enter)
+	connect("mouse_exited", on_mouse_leave)
+	name_label.visible = false
 	name_label.text = ''
 	amount_label. text = '';

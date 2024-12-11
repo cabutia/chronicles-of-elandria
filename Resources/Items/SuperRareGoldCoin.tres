@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://b8231hy7mofa0"]
+[gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://350y56kft2cg"]
 
-[ext_resource type="Script" path="res://Resources/Item.gd" id="1_3s8vr"]
-[ext_resource type="Texture2D" uid="uid://cpaytg6g2goyn" path="res://Assets/Dist/Items/MonedaD.png" id="1_nl2p3"]
-[ext_resource type="Texture2D" uid="uid://cwe7tytk6rdb8" path="res://Assets/Dist/Items/MonedaD-inventory.png" id="2_cjcie"]
+[ext_resource type="Texture2D" uid="uid://cpaytg6g2goyn" path="res://Assets/Dist/Items/MonedaD.png" id="1_073xg"]
+[ext_resource type="Texture2D" uid="uid://cwe7tytk6rdb8" path="res://Assets/Dist/Items/MonedaD-inventory.png" id="2_5ur46"]
+[ext_resource type="Script" path="res://Resources/Item.gd" id="3_ktkuk"]
 
 [sub_resource type="Animation" id="Animation_ityqb"]
 length = 0.001
@@ -51,18 +51,18 @@ _bundled = {
 "node_count": 3,
 "node_paths": [],
 "nodes": PackedInt32Array(-1, -1, 1, 0, -1, 0, 0, 0, 0, 2, 2, -1, 4, 3, 0, 4, 1, 5, 2, 6, 3, 0, 0, 0, 7, 7, -1, 2, 8, 4, 9, 5, 0),
-"variants": [1, Vector2(3, 3), ExtResource("1_nl2p3"), 5, "idle", {
+"variants": [1, Vector2(3, 3), ExtResource("1_073xg"), 5, "idle", {
 "": SubResource("AnimationLibrary_ujnk8")
 }],
 "version": 3
 }
 
 [resource]
-script = ExtResource("1_3s8vr")
-id = "gold_coin"
-name = "Gold Coin"
-weight = 10
-stackable = true
-drop_duration = 0
+script = ExtResource("3_ktkuk")
+id = "super_rare_gold_coin"
+name = "Super Rare Gold Coin"
+weight = 50
+stackable = false
+drop_duration = 5
 dropped_sprite = SubResource("PackedScene_1xt1c")
-inventory_texture = ExtResource("2_cjcie")
+inventory_texture = ExtResource("2_5ur46")

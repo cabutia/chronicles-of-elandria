@@ -1,16 +1,24 @@
-[gd_resource type="Resource" script_class="EntityDrop" load_steps=5 format=3 uid="uid://ct4egelp5cvb6"]
+[gd_resource type="Resource" script_class="EntityDrop" load_steps=7 format=3 uid="uid://ct4egelp5cvb6"]
 
 [ext_resource type="Resource" uid="uid://b8231hy7mofa0" path="res://Resources/Items/GoldCoin.tres" id="1_6u5kl"]
 [ext_resource type="Script" path="res://Resources/EntityDrop.gd" id="1_drwjm"]
 [ext_resource type="Script" path="res://Resources/DropListItem.gd" id="2_rynky"]
+[ext_resource type="Resource" uid="uid://350y56kft2cg" path="res://Resources/Items/SuperRareGoldCoin.tres" id="3_bcf74"]
 
 [sub_resource type="Resource" id="Resource_xwurk"]
 script = ExtResource("2_rynky")
 min_amount = 50
 max_amount = 150
-chance = 50
+chance = 100
 item = ExtResource("1_6u5kl")
+
+[sub_resource type="Resource" id="Resource_akpcp"]
+script = ExtResource("2_rynky")
+min_amount = 1
+max_amount = 1
+chance = 100
+item = ExtResource("3_bcf74")
 
 [resource]
 script = ExtResource("1_drwjm")
-list = Array[ExtResource("2_rynky")]([SubResource("Resource_xwurk")])
+list = Array[ExtResource("2_rynky")]([SubResource("Resource_xwurk"), SubResource("Resource_akpcp")])

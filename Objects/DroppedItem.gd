@@ -1,10 +1,11 @@
-extends Node2D
+class_name DroppedItem extends Node2D
 
 @onready var label: Label = $Label;
 @onready var sprite_container: Node2D = $SpriteContainer
 @onready var pickup_area: Area2D = $PickupArea;
+@onready var despawn_timer: Timer = $DespawnTimer;
 
-var item: DroppedItem;
+var item: DroppedItemResource;
 
 signal pickup;
 
@@ -12,14 +13,24 @@ signal pickup;
 func _ready():
 	if item:
 		label.text = str("x", item.amount, " ", item.item.name)
+		start_despawn_timer(item.item.drop_duration);
+		despawn_timer.connect("timeout", on_despawn_timer_timeout)
 	pickup_area.connect("body_entered", on_body_entered)
+	
+func on_despawn_timer_timeout():
+	queue_free()
 	
 func on_body_entered(entity: Node2D):
 	if entity.is_in_group("player"):
-		pickup.emit(item)
-		queue_free()
+		pickup.emit(self)
+		
+func start_despawn_timer(time: int):
+	if time == 0:
+		return
+	despawn_timer.wait_time = time
+	despawn_timer.start()
 	
-func set_item(_item: DroppedItem):
+func set_item(_item: DroppedItemResource):
 	item = _item
 	set_sprite(item.item.dropped_sprite)
 	

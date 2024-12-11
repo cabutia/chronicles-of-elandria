@@ -13,7 +13,7 @@ offset_left = -5.0
 offset_top = -3.0
 offset_right = 5.0
 offset_bottom = 3.0
-color = Color(1, 1, 0.384314, 1)
+color = Color(0.862745, 0.0823529, 0, 1)
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_en8dq")

@@ -5,7 +5,8 @@ extends Node
 
 # DEV
 var object_map: Dictionary = {
-	"gold_coin": preload("res://Resources/Items/GoldCoin.tres")
+	"gold_coin": preload("res://Resources/Items/GoldCoin.tres"),
+	"super_rare_gold_coin": preload("res://Resources/Items/SuperRareGoldCoin.tres")
 }
 # DEV
 
@@ -25,7 +26,7 @@ func initialize():
 			var slot = InventorySlotScn.instantiate();
 			inventory_node.get_grid_container().add_child(slot)
 			slots.append(slot)
-		print("initialize")
+		
 		update_inventory()
 	
 func get_slot_at(index: int) -> InventorySlot:
@@ -38,12 +39,16 @@ func map_item_to_resource(name: String) -> Item:
 		return object_map[name];
 	return
 	
+func create_inventory_item(index: int, item: Item, amount: int) -> InventoryItemResource:
+	var resource = InventoryItemResource.new();
+	resource.slot = index;
+	resource.item = item
+	resource.amount = amount;
+	return resource
+	
 func load(items: Array[Dictionary]):
 	for item in items:
-		var resource = InventoryItemResource.new();
-		resource.slot = item.slot;
-		resource.item = map_item_to_resource(item.name)
-		resource.amount = item.amount;
+		var resource = create_inventory_item(item.slot, map_item_to_resource(item.id), item.amount)
 		inventory_items.append(resource);
 	update_inventory()
 	
@@ -60,8 +65,16 @@ func find_existing_item_by_name(name: String) -> InventoryItemResource:
 		if inventory_item.item.name == name:
 			return inventory_item;
 	return
+	
+func can_pickup(dropped_item: DroppedItemResource) -> bool:
+	var inventory_item = find_existing_item_by_name(dropped_item.item.name);
+	if inventory_item and inventory_item.item.stackable:
+		return true
+	return len(inventory_items) < max_inventory_size
 
-func on_pickup_item(dropped_item: DroppedItem):
+func on_pickup_item(dropped_item: DroppedItemResource):
+	if !can_pickup(dropped_item):
+		return
 	game_manager.send_message(str("Picked up x", dropped_item.amount, " ", dropped_item.item.name))
 	# Find existing item in inventory
 	var inventory_item = find_existing_item_by_name(dropped_item.item.name);
@@ -79,6 +92,28 @@ func on_pickup_item(dropped_item: DroppedItem):
 		else:
 			print("Slot not found ")
 			return
+	elif len(inventory_items) < max_inventory_size:
+		var first_empty_slot: InventorySlot;
+		var empty_slot_idx;
+		var slot_idx = 0
+		for slot in slots:
+			if slot.is_empty():
+				first_empty_slot = slot
+				empty_slot_idx = slot_idx
+				print("First slot empty is at ", slot_idx)
+				break
+			slot_idx += 1
+		if !first_empty_slot:
+			print("No slots available")
+			return
+		var item_resource = map_item_to_resource(dropped_item.item.id)
+		var new_inventory_item = create_inventory_item(empty_slot_idx, item_resource, dropped_item.amount)
+		first_empty_slot.set_inventory_item(new_inventory_item)
+		slots[slot_idx] = first_empty_slot
+		inventory_items.append(new_inventory_item)
+		update_inventory()
+		
+		
 	# Else check if inventory has space left
 		# If there's space left, create new item
 		# Else do nothing

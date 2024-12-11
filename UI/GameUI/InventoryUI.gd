@@ -9,8 +9,9 @@ func get_grid_container() -> GridContainer:
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	inventory_manager.set_node(self)
-
+	visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if Input.is_action_just_pressed("toggle_inventory"):
+		visible = !visible
